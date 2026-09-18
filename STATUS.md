@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-**ESPECIFICACION_INICIAL / NO_IMPLEMENTADO**
+**PROPUESTA_COMPLETA_CONSOLIDADA / NO_IMPLEMENTADO**
 
 ## Fecha de corte
 
@@ -13,19 +13,28 @@
 - repositorio creado;
 - propósito definido;
 - separación ROOT_CONSOLE / ROOT_ECOSISTEMA definida;
-- Product Spec creada;
-- Architecture Spec creada;
-- UI Spec creada;
-- Data Model creado;
-- Estados normalizados definidos;
-- Modelo de privacidad definido;
-- Roadmap definido;
-- Handoff inicial preparado.
+- propuesta completa consolidada;
+- menú global documentado;
+- Product Spec;
+- Architecture Spec;
+- UI Spec;
+- Workflows;
+- Data Model;
+- estados normalizados;
+- modelo de privacidad;
+- roadmap V0.1 → V1.0;
+- handoff preparado.
+
+## Documento canónico
+
+`docs/PROPOSAL_COMPLETE.md`
+
+Ese documento contiene la propuesta integral para no depender del historial del chat.
 
 ## No iniciado
 
 - selección de stack frontend;
-- scaffolding de aplicación;
+- scaffolding;
 - componentes UI;
 - datos mock ejecutables;
 - adaptadores;
@@ -34,20 +43,25 @@
 
 ## Regla vigente
 
-No integrar datos privados ni rutas sensibles mientras este repositorio sea público.
+ROOT_CONSOLE no es fuente de verdad. Consume y presenta información cuya autoridad permanece en ROOT_ECOSISTEMA o en el proyecto dueño correspondiente.
 
-## Siguiente acción recomendada
+## Privacidad
 
-Cuando se reactive este proyecto:
+El repositorio es actualmente público.
 
-1. confirmar visibilidad deseada del repositorio;
-2. seleccionar o detectar stack frontend;
+No integrar PII, credenciales, secretos, IDs sensibles, rutas privadas, datos operativos privados ni arquitectura confidencial.
+
+## Siguiente acción cuando se reactive
+
+1. confirmar si el repositorio continuará público;
+2. seleccionar/detectar stack frontend;
 3. crear V0.1;
-4. usar únicamente datos mock/sanitizados;
-5. validar UX móvil antes de conectar fuentes reales.
+4. usar solo datos mock/sanitizados;
+5. validar UX móvil;
+6. conectar fuentes reales progresivamente.
 
-## Bloqueos
+## Prioridad actual
 
-Ninguno para documentación.
+Implementación pausada de forma deliberada mientras continúan trabajos prioritarios en otros proyectos.
 
-Las integraciones reales quedan deliberadamente pospuestas hasta terminar la actualización activa de los proyectos prioritarios.
+No existe bloqueo documental.
