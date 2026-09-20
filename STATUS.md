@@ -79,3 +79,27 @@ El espejo de GitHub Pages es solo despliegue; no es una segunda fuente de verdad
 ## Siguiente acción
 
 Usar V0.1 en campo como consola de navegación y lectura. Las escrituras reales siguen ocurriendo mediante ROOT y el proyecto dueño correspondiente.
+
+
+## Demo UX AFL AUTOS — 2026-09-20
+
+Se agregó una Demo 1 independiente y responsiva:
+
+`demos/afl-autos-home-ux-demo1.html`
+
+Objetivo:
+- validar una Home contextual basada en decisiones humanas;
+- distinguir atención privada autorizada de publicación pública no autorizada;
+- mostrar captura complementaria como siguiente tarea;
+- reducir exposición de estados técnicos en la operación diaria.
+
+La demo:
+- funciona en móvil y escritorio;
+- es pública/sanitizada;
+- no contiene PII, VIN, enlaces privados, rutas sensibles, credenciales ni RAW;
+- no sustituye `index.html`;
+- no modifica ninguna fuente de verdad.
+
+Estado:
+
+`DEMO_1_LISTA_PARA_VALIDACION / HOME_V0.1_SIN_REEMPLAZAR`
