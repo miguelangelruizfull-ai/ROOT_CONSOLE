@@ -2,13 +2,13 @@
 
 ## Estado
 
-**PROPUESTA_COMPLETA_CONSOLIDADA / NO_IMPLEMENTADO**
+**V0.1_IMPLEMENTADA / MOBILE_FIRST**
+
+## Entrada
+
+Abrir `index.html`.
 
 ## Propósito
-
-Permitir retomar ROOT_CONSOLE sin reconstruir la conversación original.
-
-## Identidad
 
 ROOT_CONSOLE es la interfaz operativa del ecosistema ROOT.
 
@@ -19,67 +19,55 @@ No es:
 - un repositorio de datos privados;
 - una base maestra paralela.
 
-## Relación
+## Implementado
 
-```text
-ROOT_CONSOLE
-      ↓ presenta / consulta
-ROOT_ECOSISTEMA
-      ↓ coordina
-PROYECTOS DUEÑOS
-```
+- HOY;
+- estado global;
+- siguiente acción;
+- PROYECTOS;
+- DECISIONES;
+- CONSULTA;
+- vista contextual;
+- navegación móvil;
+- estado sanitizado local.
 
-## Documento principal
+## Fuentes
 
-Abrir primero:
+Documento funcional:
 
 `docs/PROPOSAL_COMPLETE.md`
 
-Después consultar según necesidad:
+Estado ejecutable:
 
-1. STATUS.md
-2. docs/ARCHITECTURE.md
-3. docs/UI_SPEC.md
-4. docs/GLOBAL_MENU.md
-5. docs/WORKFLOWS.md
-6. docs/DATA_MODEL.md
-7. docs/STATES.md
-8. docs/PRIVACY.md
-9. docs/ROADMAP.md
+`data/state.json`
 
-## Principios consolidados
+El JSON contiene únicamente información pública/sanitizada y no debe convertirse en autoridad.
 
-- navegación global por proyectos;
-- módulos internos solo dentro del proyecto activo;
-- una siguiente acción principal;
-- decisiones humanas separadas;
-- READ / PREPARE / EXECUTE;
-- estados normalizados;
-- auditor con riesgo + acción + propósito;
-- contradicciones sin elegir valores no autorizados;
-- fuentes de verdad visibles sin duplicarlas;
-- mobile-first;
-- PRIVATE → SANITIZED → PUBLIC;
-- no inventar datos no confirmados.
+## Regla de ejecución
 
-## Pantallas
+```text
+UI
+→ prepara/navega
+→ ROOT valida autorización
+→ proyecto dueño recibe escritura
+→ UI se refresca
+```
 
-1. HOY
-2. PROYECTOS
-3. DECISIONES
-4. AUDITOR
-5. ACTIVIDAD
-6. FUENTES DE VERDAD
-7. CONSULTA
-8. vistas contextuales de proyecto/entidad
-9. Command Center
+## Privacidad
 
-## Implementación
+Mantener fuera de este repositorio:
 
-No iniciada.
+- PII;
+- credenciales;
+- RAW;
+- VIN;
+- enlaces privados;
+- rutas internas sensibles;
+- secretos;
+- datos operativos privados.
 
-La reanudación debe comenzar por V0.1 con datos mock/sanitizados.
+## Siguiente
 
-## Restricción
-
-Mientras el repositorio siga público, mantener todo el contenido sanitizado y libre de PII, credenciales, secretos, IDs sensibles, rutas privadas y arquitectura confidencial.
+1. verificar despliegue;
+2. validar en teléfono real;
+3. después avanzar a V0.2 Decisiones con integración autorizada.
