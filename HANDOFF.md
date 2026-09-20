@@ -68,6 +68,12 @@ Mantener fuera de este repositorio:
 
 ## Siguiente
 
-1. verificar despliegue;
+1. abrir el despliegue público `/root-console/`;
 2. validar en teléfono real;
 3. después avanzar a V0.2 Decisiones con integración autorizada.
+
+## Despliegue
+
+`https://miguelangelruizfull-ai.github.io/root-console/`
+
+El código fuente canónico permanece en `ROOT_CONSOLE`; el sitio público es un espejo de ejecución.
