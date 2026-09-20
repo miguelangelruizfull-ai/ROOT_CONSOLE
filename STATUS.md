@@ -2,66 +2,69 @@
 
 ## Estado actual
 
-**PROPUESTA_COMPLETA_CONSOLIDADA / NO_IMPLEMENTADO**
+**V0.1_IMPLEMENTADA / MOBILE_FIRST / DATOS_PUBLICOS_SANITIZADOS**
 
 ## Fecha de corte
 
-2026-09-18
+2026-09-20
 
 ## Terminado
 
-- repositorio creado;
-- propósito definido;
-- separación ROOT_CONSOLE / ROOT_ECOSISTEMA definida;
 - propuesta completa consolidada;
-- menú global documentado;
-- Product Spec;
-- Architecture Spec;
-- UI Spec;
-- Workflows;
-- Data Model;
-- estados normalizados;
-- modelo de privacidad;
-- roadmap V0.1 → V1.0;
-- handoff preparado.
+- arquitectura y privacidad definidas;
+- Home / Hoy implementado;
+- Proyectos implementado;
+- Decisiones implementado;
+- Consulta ROOT implementada;
+- vista contextual de proyecto implementada;
+- navegación móvil inferior implementada;
+- siguiente acción principal implementada;
+- estado global implementado;
+- estado sanitizado en `data/state.json`;
+- acceso público a AFL AUTOS y Portafolio únicamente mediante URLs públicas;
+- frontend sin PII, credenciales, RAW, VIN, rutas privadas ni secretos.
 
-## Documento canónico
+## Archivos ejecutables
 
-`docs/PROPOSAL_COMPLETE.md`
+- `index.html`
+- `styles.css`
+- `app.js`
+- `data/state.json`
 
-Ese documento contiene la propuesta integral para no depender del historial del chat.
+## Autoridad
 
-## No iniciado
+ROOT_CONSOLE sigue siendo una capa de presentación.
 
-- selección de stack frontend;
-- scaffolding;
-- componentes UI;
-- datos mock ejecutables;
-- adaptadores;
-- conectores reales;
-- despliegue.
-
-## Regla vigente
-
-ROOT_CONSOLE no es fuente de verdad. Consume y presenta información cuya autoridad permanece en ROOT_ECOSISTEMA o en el proyecto dueño correspondiente.
+```text
+ROOT_CONSOLE
+→ presenta estado sanitizado
+→ no sustituye ROOT_ECOSISTEMA
+→ no sustituye la fuente dueña de cada proyecto
+```
 
 ## Privacidad
 
-El repositorio es actualmente público.
+El repositorio es público.
 
-No integrar PII, credenciales, secretos, IDs sensibles, rutas privadas, datos operativos privados ni arquitectura confidencial.
+Regla vigente:
 
-## Siguiente acción cuando se reactive
+```text
+PRIVATE → SANITIZED → PUBLIC
+```
 
-1. confirmar si el repositorio continuará público;
-2. seleccionar/detectar stack frontend;
-3. crear V0.1;
-4. usar solo datos mock/sanitizados;
-5. validar UX móvil;
-6. conectar fuentes reales progresivamente.
+No almacenar aquí datos operativos privados ni convertir `data/state.json` en base maestra.
 
-## Prioridad actual
+## Pendiente para V0.2+
 
-Implementación pausada de forma deliberada mientras continúan trabajos prioritarios en otros proyectos.
+- resolver publicación/despliegue si GitHub Pages no está habilitado;
+- validación visual final en teléfono real;
+- bandeja de decisiones con integración autorizada;
+- adaptadores incrementales;
+- Auditor;
+- Actividad avanzada;
+- Fuentes de verdad;
+- conectores reales.
 
-No existe bloqueo documental.
+## Siguiente acción
+
+Usar V0.1 en campo como consola de navegación y lectura. Las escrituras reales siguen ocurriendo mediante ROOT y el proyecto dueño correspondiente.
