@@ -56,7 +56,6 @@ No almacenar aquí datos operativos privados ni convertir `data/state.json` en b
 
 ## Pendiente para V0.2+
 
-- resolver publicación/despliegue si GitHub Pages no está habilitado;
 - validación visual final en teléfono real;
 - bandeja de decisiones con integración autorizada;
 - adaptadores incrementales;
@@ -64,6 +63,18 @@ No almacenar aquí datos operativos privados ni convertir `data/state.json` en b
 - Actividad avanzada;
 - Fuentes de verdad;
 - conectores reales.
+
+## Despliegue
+
+Espejo de ejecución público:
+
+`https://miguelangelruizfull-ai.github.io/root-console/`
+
+Fuente canónica del código:
+
+`miguelangelruizfull-ai/ROOT_CONSOLE`
+
+El espejo de GitHub Pages es solo despliegue; no es una segunda fuente de verdad.
 
 ## Siguiente acción
 
