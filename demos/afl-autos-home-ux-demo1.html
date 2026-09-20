@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0d">
+  <meta name="description" content="Demo 1 UX — ROOT / AFL AUTOS. Interfaz pública sanitizada.">
+  <title>ROOT · AFL AUTOS · Home UX Demo 1</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --bg:#090b0d;
+      --panel:#101318;
+      --panel-2:#151920;
+      --panel-3:#1b2028;
+      --line:#292f38;
+      --text:#f6f7f8;
+      --muted:#9ca6b1;
+      --soft:#c9ced4;
+      --ok:#65d28a;
+      --warn:#e0b257;
+      --stop:#e47a7a;
+      --accent:#f2f4f5;
+      --accent-text:#111317;
+      --shadow:0 18px 60px rgba(0,0,0,.28);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--bg);scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    button{font:inherit}
+    button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    .shell{min-height:100dvh;display:grid;grid-template-columns:1fr}
+    .sidebar{display:none}
+    .main{width:min(1160px,100%);margin:0 auto;padding:0 14px 92px}
+    .topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 2px 13px;background:rgba(9,11,13,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(41,47,56,.75)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .mark{width:36px;height:36px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;font-size:12px;font-weight:900;background:var(--panel)}
+    .eyebrow,.label{font-size:10px;letter-spacing:.15em;font-weight:800;color:var(--muted)}
+    h1,h2,h3,p{margin:0}
+    h1{font-size:18px;margin-top:2px}
+    h2{font-size:20px}
+    h3{font-size:15px}
+    .mode{font-size:10px;font-weight:900;border:1px solid var(--line);padding:7px 9px;border-radius:999px;background:var(--panel)}
+    .content{padding-top:16px}
+    .hero{display:grid;gap:12px}
+    .vehicle-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:26px;background:
+      radial-gradient(circle at 85% 10%,rgba(255,137,51,.18),transparent 32%),
+      linear-gradient(145deg,#151a21,#0f1217 60%);
+      padding:18px;min-height:250px;box-shadow:var(--shadow)}
+    .vehicle-card::after{content:"";position:absolute;right:-55px;bottom:-70px;width:220px;height:150px;border:28px solid rgba(255,255,255,.045);border-radius:48% 52% 20% 20%;transform:skewX(-10deg)}
+    .breadcrumbs{display:flex;gap:7px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-bottom:22px}
+    .vehicle-name{font-size:26px;max-width:580px;line-height:1.05}
+    .vehicle-sub{margin-top:8px;color:var(--soft);font-size:13px;max-width:640px;line-height:1.45}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+    .chip{border:1px solid var(--line);border-radius:999px;padding:7px 9px;font-size:10px;font-weight:800;background:rgba(10,12,15,.45)}
+    .chip.ok{border-color:rgba(101,210,138,.35);color:#aef0c2}
+    .chip.warn{border-color:rgba(224,178,87,.35);color:#f0cf8d}
+    .chip.stop{border-color:rgba(228,122,122,.35);color:#efaaaa}
+    .status-grid{display:grid;grid-template-columns:1fr;gap:9px;margin-top:12px}
+    .status-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:15px;min-height:116px}
+    .status-card strong{display:block;font-size:15px;margin-top:7px}
+    .status-card p{margin-top:6px;color:var(--muted);font-size:12px;line-height:1.4}
+    .status-card.ok{box-shadow:inset 3px 0 0 var(--ok)}
+    .status-card.warn{box-shadow:inset 3px 0 0 var(--warn)}
+    .status-card.stop{box-shadow:inset 3px 0 0 var(--stop)}
+    .section{margin-top:20px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .section-head p{color:var(--muted);font-size:12px;margin-top:4px}
+    .action-grid{display:grid;grid-template-columns:1fr;gap:10px}
+    .action-card{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:16px}
+    .action-card.primary{background:linear-gradient(180deg,#171c22,#12161b)}
+    .action-card h3{font-size:17px}
+    .action-card p{margin-top:7px;color:var(--muted);font-size:12px;line-height:1.5}
+    .meta{display:flex;gap:8px;align-items:center;margin:12px 0 14px;color:var(--soft);font-size:11px}
+    .button{width:100%;min-height:48px;border:1px solid var(--line);border-radius:14px;font-weight:900;font-size:12px;cursor:pointer}
+    .button.primary{background:var(--accent);color:var(--accent-text);border-color:var(--accent)}
+    .button.secondary{background:var(--panel-2);color:var(--text)}
+    .button[disabled]{opacity:.38;cursor:not-allowed}
+    .flow{display:grid;gap:0;border:1px solid var(--line);border-radius:20px;background:var(--panel);overflow:hidden}
+    .step{display:grid;grid-template-columns:34px 1fr auto;gap:11px;align-items:center;padding:14px;border-bottom:1px solid var(--line)}
+    .step:last-child{border-bottom:0}
+    .step-num{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;border:1px solid var(--line);font-size:11px;font-weight:900;background:var(--panel-2)}
+    .step strong{display:block;font-size:13px}
+    .step span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+    .state-dot{width:9px;height:9px;border-radius:999px;background:var(--muted)}
+    .state-dot.ok{background:var(--ok)} .state-dot.warn{background:var(--warn)}
+    .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .mini{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:13px}
+    .mini strong{font-size:21px;display:block}.mini span{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+    .rules{border:1px solid var(--line);border-radius:20px;background:var(--panel);overflow:hidden}
+    .rule{padding:14px 15px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+    .rule:last-child{border-bottom:0}.rule strong{font-size:13px}.rule span{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+    .tag{font-size:9px;font-weight:900;letter-spacing:.08em;padding:6px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+    .tag.yes{color:#aef0c2;border-color:rgba(101,210,138,.34)}
+    .tag.no{color:#efaaaa;border-color:rgba(228,122,122,.34)}
+    .bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px 10px 10px;border-top:1px solid var(--line);background:rgba(9,11,13,.95);backdrop-filter:blur(16px)}
+    .bottom-nav button{min-height:52px;border:0;border-radius:13px;color:var(--muted);background:transparent;font-size:10px;font-weight:900}
+    .bottom-nav button.active{background:var(--panel-2);color:var(--text)}
+    .sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:70;display:none;align-items:end;justify-content:center;padding:12px}
+    .sheet-backdrop.open{display:flex}
+    .sheet{width:min(680px,100%);max-height:84dvh;overflow:auto;background:#101318;border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:var(--shadow)}
+    .sheet-handle{width:44px;height:4px;border-radius:99px;background:#4c555f;margin:0 auto 16px}
+    .sheet h2{font-size:20px}.sheet p{margin-top:7px;color:var(--muted);font-size:12px;line-height:1.5}
+    .sheet-list{display:grid;gap:8px;margin:16px 0}
+    .sheet-item{border:1px solid var(--line);border-radius:15px;padding:12px;background:var(--panel-2)}
+    .sheet-item strong{display:block;font-size:13px}.sheet-item span{display:block;color:var(--muted);font-size:11px;margin-top:4px;line-height:1.4}
+    .close{margin-top:8px}
+    .desktop-context{display:none}
+    .demo-note{margin-top:20px;color:var(--muted);font-size:10px;line-height:1.5;text-align:center}
+    @media(min-width:720px){
+      .main{padding:0 22px 40px}
+      .status-grid{grid-template-columns:repeat(3,1fr)}
+      .action-grid{grid-template-columns:1.2fr .8fr}
+      .summary{grid-template-columns:repeat(4,1fr)}
+      .bottom-nav{left:50%;right:auto;transform:translateX(-50%);width:min(760px,calc(100% - 40px));border:1px solid var(--line);border-radius:18px 18px 0 0}
+    }
+    @media(min-width:1040px){
+      .shell{grid-template-columns:220px 1fr 300px}
+      .sidebar{display:block;position:sticky;top:0;height:100dvh;border-right:1px solid var(--line);padding:22px 14px;background:#0b0e11}
+      .side-title{font-size:12px;font-weight:900;margin-bottom:24px}
+      .side-nav{display:grid;gap:6px}.side-nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:12px;border-radius:12px;font-size:12px;font-weight:800}.side-nav button.active{background:var(--panel-2);color:var(--text)}
+      .main{padding:0 26px 50px;width:100%;max-width:1000px}
+      .desktop-context{display:block;position:sticky;top:0;height:100dvh;border-left:1px solid var(--line);background:#0b0e11;padding:22px 16px}
+      .context-card{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:14px;margin-top:12px}.context-card strong{display:block;font-size:13px}.context-card p{font-size:11px;color:var(--muted);line-height:1.5;margin-top:6px}
+      .bottom-nav{display:none}
+      .vehicle-name{font-size:32px}
+      .topbar{padding-top:18px}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Navegación ROOT">
+      <div class="side-title">ROOT CONSOLE</div>
+      <nav class="side-nav">
+        <button class="active">HOY</button>
+        <button>PROYECTOS</button>
+        <button>DECISIONES</button>
+        <button>AUDITOR</button>
+        <button>CONSULTA</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">R</div>
+          <div><div class="eyebrow">ROOT / AFL AUTOS</div><h1>Home UX · Demo 1</h1></div>
+        </div>
+        <span class="mode">DEMO · READ</span>
+      </header>
+
+      <div class="content">
+        <section class="hero">
+          <article class="vehicle-card">
+            <div class="breadcrumbs"><span>HOY</span><span>›</span><span>AFL AUTOS</span><span>›</span><span>VEHÍCULO</span></div>
+            <h2 class="vehicle-name">Volkswagen Tiguan SE 2018</h2>
+            <p class="vehicle-sub">El sistema ya puede atender una consulta privada con material real disponible. La publicación pública todavía permanece cerrada.</p>
+            <div class="chips">
+              <span class="chip ok">ATENCIÓN PRIVADA AUTORIZADA</span>
+              <span class="chip warn">CAPTURA PENDIENTE</span>
+              <span class="chip stop">NO PUBLICAR AÚN</span>
+            </div>
+          </article>
+
+          <div class="status-grid">
+            <article class="status-card ok">
+              <div class="label">PUEDES HACER AHORA</div>
+              <strong>Atender al prospecto</strong>
+              <p>Usar el paquete provisional de material real para una conversación privada 1-a-1.</p>
+            </article>
+            <article class="status-card warn">
+              <div class="label">SIGUIENTE TAREA</div>
+              <strong>Completar captura</strong>
+              <p>Solo faltan tomas específicas. No se requiere repetir toda la sesión.</p>
+            </article>
+            <article class="status-card stop">
+              <div class="label">TODAVÍA NO</div>
+              <strong>Publicar o activar catálogo</strong>
+              <p>La selección definitiva y la ficha final siguen pendientes.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div><div class="label">ACCIÓN PRINCIPAL</div><h2>¿Qué quieres hacer?</h2></div>
+          </div>
+          <div class="action-grid">
+            <article class="action-card primary">
+              <h3>Atender prospecto</h3>
+              <p>Abre una guía simple para responder ahora sin convertir material provisional en publicación pública.</p>
+              <div class="meta"><span>● Permitido</span><span>·</span><span>1-a-1</span><span>·</span><span>Material real</span></div>
+              <button class="button primary" data-sheet="prospecto">ATENDER AHORA</button>
+            </article>
+            <article class="action-card">
+              <h3>Completar captura</h3>
+              <p>Consulta únicamente las tomas que todavía tienen impacto real para cerrar el material.</p>
+              <div class="meta"><span>▲ Pendiente</span><span>·</span><span>captura mínima</span></div>
+              <button class="button secondary" data-sheet="captura">VER TOMAS FALTANTES</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div><div class="label">ESTADO DE MATERIAL</div><h2>Resumen operativo</h2></div>
+          </div>
+          <div class="summary">
+            <div class="mini"><strong>59</strong><span>JPEG revisados</span></div>
+            <div class="mini"><strong>37</strong><span>fotos únicas</span></div>
+            <div class="mini"><strong>8</strong><span>fotos provisionales</span></div>
+            <div class="mini"><strong>0</strong><span>videos nuevos</span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div><div class="label">FLUJO</div><h2>De revisión a ficha definitiva</h2><p>La interfaz muestra progreso humano, no rutas internas.</p></div>
+          </div>
+          <div class="flow">
+            <div class="step"><div class="step-num">1</div><div><strong>Revisión de material</strong><span>Terminada</span></div><i class="state-dot ok"></i></div>
+            <div class="step"><div class="step-num">2</div><div><strong>Atención provisional</strong><span>Autorizada para conversación privada</span></div><i class="state-dot ok"></i></div>
+            <div class="step"><div class="step-num">3</div><div><strong>Captura complementaria</strong><span>Faltan tomas concretas</span></div><i class="state-dot warn"></i></div>
+            <div class="step"><div class="step-num">4</div><div><strong>Selección final</strong><span>Esperando nueva captura</span></div><i class="state-dot"></i></div>
+            <div class="step"><div class="step-num">5</div><div><strong>Ficha definitiva</strong><span>Se habilita después de revisión final</span></div><i class="state-dot"></i></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><div><div class="label">PERMISOS</div><h2>Qué sí / qué no</h2></div></div>
+          <div class="rules">
+            <div class="rule"><div><strong>Enviar fotos reales a un prospecto</strong><span>Uso privado, conversación 1-a-1.</span></div><span class="tag yes">SÍ</span></div>
+            <div class="rule"><div><strong>Usar paquete provisional como selección final</strong><span>Debe revisarse nuevamente después de completar captura.</span></div><span class="tag no">NO</span></div>
+            <div class="rule"><div><strong>Publicar en superficies públicas</strong><span>Permanece cerrado hasta completar gates.</span></div><span class="tag no">NO</span></div>
+            <div class="rule"><div><strong>Activar ficha definitiva de catálogo</strong><span>Requiere selección final y datos comerciales vigentes.</span></div><span class="tag no">NO</span></div>
+          </div>
+        </section>
+
+        <p class="demo-note">Demo sanitizada. No contiene PII, VIN, enlaces privados, rutas internas, credenciales ni material RAW.</p>
+      </div>
+    </main>
+
+    <aside class="desktop-context">
+      <div class="eyebrow">CONTEXTO</div>
+      <h2 style="margin-top:5px">Decisión simple</h2>
+      <div class="context-card"><strong>Ahora</strong><p>Atender prospecto con material real provisional.</p></div>
+      <div class="context-card"><strong>Después</strong><p>Completar tomas específicas, revisar originales y cerrar selección final.</p></div>
+      <div class="context-card"><strong>Protección</strong><p>Una atención privada permitida no abre automáticamente publicación pública.</p></div>
+    </aside>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Navegación móvil">
+    <button class="active">HOY</button>
+    <button>PROYECTOS</button>
+    <button>DECISIONES</button>
+    <button>CONSULTA</button>
+  </nav>
+
+  <div class="sheet-backdrop" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet">
+      <div class="sheet-handle"></div>
+      <div id="sheet-content"></div>
+      <button class="button secondary close" id="close-sheet">CERRAR</button>
+    </div>
+  </div>
+
+  <script>
+    const sheet = document.getElementById('sheet');
+    const content = document.getElementById('sheet-content');
+    const templates = {
+      prospecto: `
+        <div class="label">ATENCIÓN PROVISIONAL</div>
+        <h2 id="sheet-title">Puedes atenderlo ahora</h2>
+        <p>Este permiso sirve para responder una solicitud privada mientras se termina la captura comercial.</p>
+        <div class="sheet-list">
+          <div class="sheet-item"><strong>Paquete provisional</strong><span>8 fotografías reales ya revisadas para atención 1-a-1.</span></div>
+          <div class="sheet-item"><strong>Uso permitido</strong><span>Enviar información y fotografías directamente al prospecto.</span></div>
+          <div class="sheet-item"><strong>Límite</strong><span>No convertir este envío en publicación pública, catálogo visible o selección definitiva.</span></div>
+        </div>
+        <button class="button primary" type="button">PREPARAR ATENCIÓN PRIVADA</button>`,
+      captura: `
+        <div class="label">CAPTURA COMPLEMENTARIA</div>
+        <h2 id="sheet-title">Solo captura lo que falta</h2>
+        <p>No repitas toda la sesión. Estas son las tomas de mayor impacto para cerrar el material.</p>
+        <div class="sheet-list">
+          <div class="sheet-item"><strong>HERO exterior limpio</strong><span>3/4 delantero, vehículo completo, fondo controlado.</span></div>
+          <div class="sheet-item"><strong>Perfiles completos</strong><span>Lado conductor y pasajero a 90°.</span></div>
+          <div class="sheet-item"><strong>Interior útil</strong><span>Segunda fila, cajuela y cabina del conductor.</span></div>
+          <div class="sheet-item"><strong>Rin + neumático</strong><span>Una toma conjunta útil, sin inferir estado técnico.</span></div>
+          <div class="sheet-item"><strong>Video vertical</strong><span>Familiar/SUV y walkaround/equipamiento.</span></div>
+        </div>
+        <button class="button primary" type="button">MARCAR COMO SIGUIENTE TAREA</button>`
+    };
+    document.querySelectorAll('[data-sheet]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        content.innerHTML = templates[btn.dataset.sheet];
+        sheet.classList.add('open');
+      });
+    });
+    document.getElementById('close-sheet').addEventListener('click',()=>sheet.classList.remove('open'));
+    sheet.addEventListener('click',e=>{if(e.target===sheet) sheet.classList.remove('open')});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape') sheet.classList.remove('open')});
+  </script>
+</body>
+</html>
